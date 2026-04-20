@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>L.67</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  text-align: center;
+  margin: 0;
+}
+
+header {
+  background: #2d3e50;
+  color: white;
+  padding: 15px;
+}
+
+.container {
+  padding: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+.hidden {
+  display: none;
+}
+
+#gameBox {
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>L.67 Productivity Hub</h2>
+</header>
+
+<div class="container">
+  <p>Welcome. Select a tool:</p>
+
+  <button onclick="showGame('clicker')">Focus Timer</button>
+  <button onclick="showGame('guess')">Number Practice</button>
+
+  <div id="gameBox"></div>
+</div>
+
+<script>
+function showGame(game) {
+  const box = document.getElementById("gameBox");
+
+  if (game === "clicker") {
+    let count = 0;
+    box.innerHTML = `
+      <h3>Focus Timer</h3>
+      <p>Clicks: <span id="count">0</span></p>
+      <button onclick="increment()">Click</button>
+    `;
+    window.increment = function() {
+      count++;
+      document.getElementById("count").innerText = count;
+    }
+  }
+
+  if (game === "guess") {
+    let number = Math.floor(Math.random() * 10) + 1;
+    box.innerHTML = `
+      <h3>Number Practice</h3>
+      <p>Guess a number (1–10)</p>
+      <input id="guessInput">
+      <button onclick="checkGuess()">Submit</button>
+      <p id="result"></p>
+    `;
+    window.checkGuess = function() {
+      let guess = document.getElementById("guessInput").value;
+      let result = document.getElementById("result");
+
+      if (guess == number) {
+        result.innerText = "Correct!";
+      } else {
+        result.innerText = "Try again";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
